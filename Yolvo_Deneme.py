@@ -8,7 +8,7 @@ model.to("cuda")
 
 cap = cv2.VideoCapture(0)
 
-GERCEK_GENISLIK_INSAN = 50  
+GERCEK_GENISLIK_INSAN = 50  #Burdaki Değerleri Sizin Bulmanız Gerekmektedir
 GERCEK_GENISLIK_TELEFON = 7  
 GERCEK_GENISLIK_KEDI = 25  
 GERCEK_GENISLIK_AT = 30  
@@ -40,7 +40,7 @@ while True:
                 gercek_genislik = GERCEK_GENISLIK_KEDI
                 nesne_adi = "Kedi"
                 renk = (255, 0, 0)
-            elif cls == 17:  # Köpek
+            elif cls == 17:  # At
                 gercek_genislik = GERCEK_GENISLIK_AT
                 nesne_adi = "At"
                 renk = (0, 255, 255)
@@ -52,11 +52,11 @@ while True:
                 continue
 
             mesafe = (gercek_genislik * ODAK_UZUNLUK) / genislik
-            mesafe = round(mesafe, 2)
+            mesafe = round(mesafe, 2) #Mesafe Hesaplama İşlemi Yapıyorz. Doğru Sonuç Değil
 
             cv2.rectangle(frame, (x1, y1), (x2, y2), renk, 2)
 
-            text = f"{nesne_adi} - {mesafe/100} metre"
+            text = f"{nesne_adi} - {mesafe/100} metre" #Mesafeyi Ekrana Yazdırıyoruz
             cv2.putText(frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, renk, 2)
 
     cv2.imshow("Kamera", frame)
